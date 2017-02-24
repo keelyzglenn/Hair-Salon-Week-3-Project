@@ -168,7 +168,7 @@ namespace HairSalon
 
             while(rdr.Read())
             {
-                foundStylistName = rdr.GetString(0)
+                foundStylistName = rdr.GetString(0);
                 foundStylistShift = rdr.GetString(1);
                 foundStylistSpecialty = rdr.GetString(2);
                 foundStylistId = rdr.GetInt32(3);

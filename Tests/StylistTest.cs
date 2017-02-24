@@ -61,6 +61,21 @@ namespace HairSalon
             Assert.Equal(testStylistList, resultStylistList);
         }
 
+        // this will test the find method for ID
+        [Fact]
+        public void Find_FindStylistById_stylist()
+        {
+            // arrange
+            Stylist stylist1 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
+            stylist1.Save();
+
+            // act
+            Stylist foundStylist = Stylist.Find(stylist1.GetId());
+
+            // assert
+            Assert.Equal(stylist1, foundStylist);
+        }
+
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
        {
