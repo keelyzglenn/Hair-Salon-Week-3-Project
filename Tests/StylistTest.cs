@@ -83,10 +83,12 @@ namespace HairSalon
             Stylist stylist1 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
             stylist1.Save();
 
-            Client client1 = new Client("geoff", 1);
-            Client client2 = new Client("jeff", 2);
+            Client client1 = new Client("geoff", stylist1.GetId());
+            Client client2 = new Client("jeff", stylist1.GetId());
+            Client client3 = new Client("john", 3);
             client1.Save();
             client2.Save();
+            client3.Save();
 
             List<Client> testClientList = new List<Client> {client1, client2};
             List<Client> resultClientList = stylist1.GetClients();
