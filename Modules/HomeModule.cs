@@ -19,7 +19,7 @@ namespace HairSalon
             };
 
             Post["/stylists/new"] =_=> {
-                Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-shift"], Request.Form["stylist-specialtys"]);
+                Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-shift"], Request.Form["stylist-specialty"]);
                 newStylist.Save();
                 return View["success.cshtml"];
             };
