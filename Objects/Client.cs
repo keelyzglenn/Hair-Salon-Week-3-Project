@@ -16,23 +16,23 @@ namespace HairSalon
             _stylistId = StylistId;
             _id = Id;
         }
-
+        
         // ensures no doubles are created in table
         public override bool Equals(System.Object otherClient)
         {
-          if (!(otherClient is Client))
-          {
-              return false;
-          }
-          else
-          {
-              Client newClient = (Client) otherClient;
-              bool idEquality = (this.GetId() == newClient.GetId());
-              bool nameEquality = (this.GetName() == newClient.GetName());
-              bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
+            if (!(otherClient is Client))
+            {
+                return false;
+            }
+            else
+            {
+                Client newClient = (Client) otherClient;
+                bool idEquality = (this.GetId() == newClient.GetId());
+                bool nameEquality = (this.GetName() == newClient.GetName());
+                bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
 
-              return (idEquality && nameEquality && stylistIdEquality);
-          }
+                return (idEquality && nameEquality && stylistIdEquality);
+            }
         }
 
         // overrides hashcode
@@ -85,14 +85,49 @@ namespace HairSalon
                 allClients.Add(newClient);
             }
             if (rdr != null)
-           {
-               rdr.Close();
-           }
-           if (conn != null)
-           {
-               conn.Close();
-           }
-           return allClients;
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return allClients;
+        }
+
+        // save method for clients
+        public void Save()
+        {
+            SqlConnection = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
+
+            SqlParameter nameParameter = new SqlParameter();
+            nameParameter.ParameterName = "@ClientName";
+            nameParameter.Value = this.GetName();
+
+            SqlParameter clientStylistIdParameter = new SqlParameter();
+            clientStylistIdParameter.ParameterName = "@ClientStylistId";
+            clientStylistIdParameter.Value = this.GetStylistId();
+
+            cmd.Parameters.Add(nameParameter);
+            cmd.Parameters.Add(clientStylistIdParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
         // method to run multiple tests at once

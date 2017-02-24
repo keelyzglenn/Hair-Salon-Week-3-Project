@@ -45,7 +45,6 @@ namespace HairSalon
             Assert.Equal(testClientList, resultClientList);
         }
 
-
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
        {
