@@ -187,6 +187,45 @@ namespace HairSalon
             return foundStylist;
         }
 
+        // returns all clients for each stylist
+        public List<Client> GetClients()
+        {
+            List<Client> clients = new List<Client>{};
+
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
+
+            SqlParameter stylistIdParameter = new SqlParameter();
+            stylistIdParameter.ParameterName = "@StylistId";
+            stylistIdParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(stylistIdParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                string clientName = rdr.GetString(0);
+                int clientStylistId = rdr.GetInt32(1);
+                int clientId = rdr.GetInt32(2);
+
+                Client newClient = new Client(clientName, clientStylistId, clientId);
+                clients.Add(newClient);
+
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return clients;
+        }
+
         // method to run multiple tests at once
         public static void DeleteAll()
         {
