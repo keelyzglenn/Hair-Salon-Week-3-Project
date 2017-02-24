@@ -45,6 +45,21 @@ namespace HairSalon
             Assert.Equal(testClientList, resultClientList);
         }
 
+        // this will test the save method
+        [Fact]
+        public void Save_TestIfSaved_true()
+        {
+            //Arrange
+            Client client1 = new Client("geoff", 1);
+            client1.Save();
+
+            List<Client> testClientList = new List<Client> {client1};
+            List<Client> resultClientList = Client.GetAll();
+
+            //Assert
+            Assert.Equal(testClientList, resultClientList);
+        }
+
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
        {
