@@ -104,7 +104,7 @@ namespace HairSalon
             return allStylists;
         }
 
-        //    save method for stylists
+        //save method for stylists
         public void Save()
         {
             SqlConnection conn = DB.Connection();
@@ -142,6 +142,49 @@ namespace HairSalon
             {
                 conn.Close();
             }
+        }
+
+        // find mehod based on id
+        public static Stylist Find(int id)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @StylistId;", conn);
+
+            SqlParameter stylistIdParameter = new SqlParameter();
+            stylistIdParameter.ParameterName = "@StylistId";
+            stylistIdParameter.Value = id.ToString();
+
+            cmd.Parameters.Add(stylistIdParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            string foundStylistName = null;
+            string foundStylistShift = null;
+            string foundStylistSpecialty = null;
+            int foundStylistId = 0;
+
+
+            while(rdr.Read())
+            {
+                foundStylistName = rdr.GetString(0)
+                foundStylistShift = rdr.GetString(1);
+                foundStylistSpecialty = rdr.GetString(2);
+                foundStylistId = rdr.GetInt32(3);
+            }
+
+            Stylist foundStylist = new Stylist(foundStylistName, foundStylistShift, foundStylistSpecialty, foundStylistId);
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return foundStylist;
         }
 
         // method to run multiple tests at once
