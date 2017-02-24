@@ -22,6 +22,9 @@ In SQLCMD:
 * CREATE TABLE stylist (name VARCHAR(255), shift VARCHAR(255), specialty VARCHAR(255), id INT IDENTITY(1,1));
 * GO
 
+## Link
+https://github.com/keelyzglenn/Hair-Salon-Week-3-Project
+
 ## Technologies Used
 
 * HTML
