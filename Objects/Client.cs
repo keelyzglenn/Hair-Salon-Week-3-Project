@@ -149,9 +149,9 @@ namespace HairSalon
 
             while(rdr.Read())
             {
-                string foundClientName = rdr.GetString(0);
-                int foundClientStylistId = rdr.GetInt32(1);
-                int foundClientId = rdr.GetInt32(2);
+                foundClientName = rdr.GetString(0);
+                foundClientStylistId = rdr.GetInt32(1);
+                foundClientId = rdr.GetInt32(2);
             }
 
             Client foundClient = new Client(foundClientName, foundClientStylistId, foundClientId);
