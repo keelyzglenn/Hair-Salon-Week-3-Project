@@ -76,6 +76,24 @@ namespace HairSalon
             Assert.Equal(stylist1, foundStylist);
         }
 
+        // test if program returns all clients for each stylist1
+        [Fact]
+        public void GetClients_RetrievesAllClientsWithinStylist_list()
+        {
+            Stylist stylist1 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
+            stylist1.Save();
+
+            Client client1 = new Client("geoff", 1);
+            Client client2 = new Client("jeff", 2);
+            client1.Save();
+            client2.Save();
+
+            List<Client> testClientList = new List<Client> {client1, client2};
+            List<Client> resultClientList = stylist1.GetClients();
+
+            Assert.Equal(testClientList, resultClientList);
+        }
+
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
        {
