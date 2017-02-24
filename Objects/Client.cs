@@ -167,6 +167,43 @@ namespace HairSalon
            return foundClient;
         }
 
+        // update method for client name
+        public void Update(string newClientName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @newClientName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
+
+            SqlParameter newClientNameParameter = new SqlParameter();
+            newClientNameParameter.ParameterName = "@newClientName";
+            newClientNameParameter.Value = newClientName;
+
+            SqlParameter clientIdParameter = new SqlParameter();
+            clientIdParameter.ParameterName = "@ClientId";
+            clientIdParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(newClientNameParameter);
+            cmd.Parameters.Add(clientIdParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+              {
+                  this._name = rdr.GetString(0);
+              }
+
+              if (rdr !=null)
+              {
+                  rdr.Close();
+              }
+
+              if (conn != null)
+              {
+                  conn.Close();
+              }
+        }
+
         // method to run multiple tests at once
         public static void DeleteAll()
         {
