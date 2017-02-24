@@ -101,15 +101,15 @@ namespace HairSalon
         public void Test_Update_UpdateStylistInData()
         {
             // Arrange
-            string oldStylist = "Kandi";
-            Stylist testStylist = new Stylist(oldStylist);
-            testStylist.Save();
+            Stylist stylist1 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
+            stylist1.Save();
+
             string newStylist = "Josh";
 
             // Act
-            testStylist.Update(newStylist);
+            stylist1.Update(newStylist);
 
-            string result = testStylist.GetStylistType();
+            string result = stylist1.GetName();
 
             // Assert
             Assert.Equal(newStylist, result);

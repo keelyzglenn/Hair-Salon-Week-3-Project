@@ -233,7 +233,7 @@ namespace HairSalon
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("UPDATE stylists SET type = @NewStylistName OUTPUT INSERTED.type WHERE id = @StylistId;", conn);
+            SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @NewStylistName OUTPUT INSERTED.name WHERE id = @StylistId;", conn);
 
             SqlParameter newStylistNameParameter = new SqlParameter();
             newStylistNameParameter.ParameterName = "@newStylistName";
@@ -250,7 +250,7 @@ namespace HairSalon
 
             while(rdr.Read())
             {
-                this._type = rdr.GetString(0);
+                this._name = rdr.GetString(0);
             }
 
             if (rdr !=null)
