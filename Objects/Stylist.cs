@@ -226,6 +226,66 @@ namespace HairSalon
             return clients;
         }
 
+
+        //Update Stylist name method
+        public void Update(string newStylistName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE stylists SET type = @NewStylistName OUTPUT INSERTED.type WHERE id = @StylistId;", conn);
+
+            SqlParameter newStylistNameParameter = new SqlParameter();
+            newStylistNameParameter.ParameterName = "@newStylistName";
+            newStylistNameParameter.Value = newStylistName;
+
+            SqlParameter stylistIdParameter = new SqlParameter();
+            stylistIdParameter.ParameterName = "@StylistId";
+            stylistIdParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(newStylistNameParameter);
+            cmd.Parameters.Add(stylistIdParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._type = rdr.GetString(0);
+            }
+
+            if (rdr !=null)
+            {
+                rdr.Close();
+            }
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+        // method to delete category
+        public void Delete()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM stylists WHERE id = @StylistId; DELETE FROM clients WHERE stylist_id = @StylistId;", conn);
+
+            SqlParameter stylistIdParameter = new SqlParameter();
+            stylistIdParameter.ParameterName = "@StylistId";
+            stylistIdParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(stylistIdParameter);
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+
         // method to run multiple tests at once
         public static void DeleteAll()
         {

@@ -96,6 +96,58 @@ namespace HairSalon
             Assert.Equal(testClientList, resultClientList);
         }
 
+        // update stylists name
+        [Fact]
+        public void Test_Update_UpdateStylistInData()
+        {
+            // Arrange
+            string oldStylist = "Kandi";
+            Stylist testStylist = new Stylist(oldStylist);
+            testStylist.Save();
+            string newStylist = "Josh";
+
+            // Act
+            testStylist.Update(newStylist);
+
+            string result = testStylist.GetStylistType();
+
+            // Assert
+            Assert.Equal(newStylist, result);
+        }
+
+
+        //test that stylist was deleted from the database
+        [Fact]
+        public void Delete_DeleteStylistFromDatabase_null()
+        {
+            //Arrange
+
+            Stylist stylist1 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
+            stylist1.Save();
+
+
+            Stylist stylist2 = new Stylist("John", "1-Cl", "Mens hair", 2);
+            stylist2.Save();
+
+            Client testClient1 = new Client("geoff", stylist1.GetId());
+            Client testClient2 = new Client("geoff", stylist2.GetId());
+            testClient1.Save();
+            testClient2.Save();
+
+            //Act
+            stylist1.Delete();
+            List<Stylist> resultStylist = Stylist.GetAll();
+            List<Stylist> testStylistList = new List<Stylist> {stylist2};
+
+            List<Client> resultClient = Client.GetAll();
+            List<Client> testClientList = new List<Client> {testClient2};
+
+            //Assert
+            Assert.Equal(testStylistList, resultStylist);
+            Assert.Equal(testClientList, resultClient);
+
+        }
+
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
        {
