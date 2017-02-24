@@ -1,9 +1,16 @@
+Client:
+Return all client information
+Get all Clients in list
+add new client to specific stylist
+Edit information about client (name)
+Delete individual clients
 
-As an employee, I need to be able to select a stylist, see their details, and see a list of all clients that belong to that stylist.
-As an employee, I need to add new stylists to our system when they are hired.
-As an employee, I need to be able to add new clients to a specific stylist.
-As an employee, I need to be able to update a client's name.
-As an employee, I need to be able to delete a client if they no longer visit our salon.
+Stylists:
+Get all stylists in list
+return all stylists information including list of clients
+add new stylists
+
+
 
 # Hair Salon
 ## by Keely Silva-Glenn
