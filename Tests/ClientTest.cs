@@ -27,6 +27,25 @@ namespace HairSalon
             }
         }
 
+        // test that program will return a list of all clients
+        [Fact]
+        public void GetAll_ReturnAllClients_list()
+        {
+            // arrange
+            Client client1 = new Client("geoff", 1);
+            Client client2 = new Client("jeff", 2);
+            client1.Save();
+            client2.Save();
+
+            // act
+            List<Client> testClientList = new List<Client> {client1, client2};
+            List<Client> resultClientList = Client.GetAll();
+
+            // assert
+            Assert.Equal(testClientList, resultClientList);
+        }
+
+
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
        {

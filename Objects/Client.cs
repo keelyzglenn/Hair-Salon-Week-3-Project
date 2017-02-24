@@ -74,8 +74,5 @@ namespace HairSalon
             conn.Close();
         }
 
-
-
-
     }
 }
