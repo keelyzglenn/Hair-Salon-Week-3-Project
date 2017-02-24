@@ -76,23 +76,23 @@ namespace HairSalon
                 return View["client.cshtml", SelectedClient];
             };
 
-            Get["/clients/edit/{id}"] = parameters => {
+            Get["/client/edit/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
                 return View["client_edit.cshtml", SelectedClient];
             };
 
-            Patch["/clients/edit/{id}"] = parameters => {
+            Patch["/client/edit/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
                 SelectedClient.Update(Request.Form["client-name"]);
                 return View["success.cshtml"];
             };
 
-            Get["clients/delete/{id}"] = parameters => {
+            Get["client/delete/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
                 return View["client_edit.cshtml", SelectedClient];
             };
 
-            Delete["clients/delete/{id}"] = parameters => {
+            Delete["client/delete/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
                 SelectedClient.Delete();
                 return View["success.cshtml"];

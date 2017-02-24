@@ -1,0 +1,46 @@
+body{
+    font-family: 'Lato', sans-serif;
+    background-image: url("../img/bar.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 800px;
+    color: white;
+    font-size: 20px;
+}
+
+.container {
+    background: rgb(79, 75, 74);
+    background: rgba(79, 75, 74, .5);
+    color: white;
+    text-align: left;
+    padding: 100px;
+    margin: 50px;
+    margin-left: 70px;
+    border-radius: 1%;
+    height: 700px;
+}
+
+a {
+    color: white;
+}
+
+form {
+    margin-top: 40px;
+}
+form input {
+    color: black;
+}
+
+
+h4 {
+    margin-top: 30px;
+}
+
+h2 {
+    margin-top: 40px;
+}
+
+button {
+    background-color: black;
+    color: white;
+}

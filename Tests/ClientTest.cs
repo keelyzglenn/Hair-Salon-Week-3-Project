@@ -18,12 +18,12 @@ namespace HairSalon
         public void Equals_TestifEqauals_true()
         {
             {
-            // arrange, act
-            Client client1 = new Client("geoff", 1);
-            Client client2 = new Client("geoff", 1);
+                // arrange, act
+                Client client1 = new Client("geoff", 1);
+                Client client2 = new Client("geoff", 1);
 
-            // assert
-            Assert.Equal(client1, client2);
+                // assert
+                Assert.Equal(client1, client2);
             }
         }
 
@@ -134,8 +134,8 @@ namespace HairSalon
 
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
-       {
-         Client.DeleteAll();
-       }
+        {
+            Client.DeleteAll();
+        }
     }
 }

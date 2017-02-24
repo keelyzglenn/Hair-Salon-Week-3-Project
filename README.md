@@ -1,17 +1,3 @@
-Client:
-Return all client information
-Get all Clients in list
-add new client to specific stylist
-Edit information about client (name)
-Delete individual clients
-
-Stylists:
-Get all stylists in list
-return all stylists information including list of clients
-add new stylists
-
-
-
 # Hair Salon
 ## by Keely Silva-Glenn
 
@@ -27,12 +13,13 @@ This is an app for a Hair Salon. In the app an employee can see all stylist with
 ### Recreate Database
 
 In SQLCMD:
-* CREATE DATABASE to\_do;
+* CREATE DATABASE hair\_salon;
 * GO
-* USE to\_do;
+* USE hair\_salon;
 * GO
-* CREATE TABLE categories (id INT IDENTITY(1,1), name VARCHAR(255));
-* CREATE TABLE tasks (id INT IDENTITY(1,1), description VARCHAR(255));
+* CREATE TABLE clients (name VARCHAR(255), stylist_id INT, id INT IDENTITY(1,1));
+* GO
+* CREATE TABLE stylist (name VARCHAR(255), shift VARCHAR(255), specialty VARCHAR(255), id INT IDENTITY(1,1));
 * GO
 
 ## Technologies Used
@@ -72,9 +59,6 @@ In SQLCMD:
 #### Salon employee delete client
 * Input: Delete Client
 * Output: Are You sure you want to delete client? Y or N?..... Client deleted
-
-## Ice Box
-
 
 ## Legal
 MIT License

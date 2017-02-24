@@ -18,12 +18,12 @@ namespace HairSalon
         public void Equals_TestifEqauals_true()
         {
             {
-            // arrange, act
-            Stylist stylist1 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
-            Stylist stylist2 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
+                // arrange, act
+                Stylist stylist1 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
+                Stylist stylist2 = new Stylist("Kendra", "1-Cl", "Mens hair", 1);
 
-            // assert
-            Assert.Equal(stylist1, stylist2);
+                // assert
+                Assert.Equal(stylist1, stylist2);
             }
         }
 
@@ -150,9 +150,9 @@ namespace HairSalon
 
         // prevent repeats of tests or multiple test interferience
         public void Dispose()
-       {
-         Stylist.DeleteAll();
-         Client.DeleteAll();
-       }
+        {
+            Stylist.DeleteAll();
+            Client.DeleteAll();
+        }
     }
 }
