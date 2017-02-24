@@ -157,14 +157,14 @@ namespace HairSalon
             Client foundClient = new Client(foundClientName, foundClientStylistId, foundClientId);
 
             if (rdr != null)
-           {
-               rdr.Close();
-           }
-           if (conn != null)
-           {
-               conn.Close();
-           }
-           return foundClient;
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return foundClient;
         }
 
         // update method for client name
@@ -189,19 +189,41 @@ namespace HairSalon
             SqlDataReader rdr = cmd.ExecuteReader();
 
             while(rdr.Read())
-              {
-                  this._name = rdr.GetString(0);
-              }
+            {
+                this._name = rdr.GetString(0);
+            }
 
-              if (rdr !=null)
-              {
-                  rdr.Close();
-              }
+            if (rdr !=null)
+            {
+                rdr.Close();
+            }
 
-              if (conn != null)
-              {
-                  conn.Close();
-              }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+        // delete method to delete client
+        public void Delete()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
+
+            SqlParameter clientIdParameter = new SqlParameter();
+            clientIdParameter.ParameterName = "@ClientId";
+            clientIdParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(clientIdParameter);
+
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
         // method to run multiple tests at once
