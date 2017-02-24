@@ -91,7 +91,7 @@ namespace HairSalon
                 int stylistId = rdr.GetInt32(3);
 
                 Stylist newStylist = new Stylist(stylistName, stylistShift, stylistSpecialty, stylistId);
-                AllStylists.Add(newStylist);
+                allStylists.Add(newStylist);
             }
             if (rdr != null)
             {
