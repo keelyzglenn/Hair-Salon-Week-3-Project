@@ -16,7 +16,7 @@ namespace HairSalon
             _stylistId = StylistId;
             _id = Id;
         }
-        
+
         // ensures no doubles are created in table
         public override bool Equals(System.Object otherClient)
         {
@@ -69,7 +69,7 @@ namespace HairSalon
         {
             List<Client> allClients = new List<Client>{};
 
-            SqlConnection - DB.Connection();
+            SqlConnection conn = DB.Connection();
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM clients;", conn);
@@ -81,7 +81,7 @@ namespace HairSalon
                 int clientStylistId = rdr.GetInt32(1);
                 int clientId = rdr.GetInt32(2);
 
-                Clinet newClient = new Client(clientName, clientStylistId, clientId);
+                Client newClient = new Client(clientName, clientStylistId, clientId);
                 allClients.Add(newClient);
             }
             if (rdr != null)
@@ -98,7 +98,7 @@ namespace HairSalon
         // save method for clients
         public void Save()
         {
-            SqlConnection = DB.Connection();
+            SqlConnection conn = DB.Connection();
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
